@@ -1,11 +1,35 @@
 {% extends "base.html" %}
+{% load myfilters %}
 
 {% block content %}
-<h1>Login</h1>
-<form action="{% url "login" %}" method="post">{% csrf_token %}
-    {{ form.as_p }}
+<section class="section columns is-mobile is-centered">
+  <div class="column is-4">
+    <h2 class="title is-2">Login</h2>
 
-    <input type="hidden" name="next" value="{{ next }}" />
-    <input type="submit" value="Submit" />
-</form>
+    <form action="" method="post">{% csrf_token %}
+
+      {{ form.non_field_errors }}
+
+      <!--Username -->
+      <div class="field">
+        {{ form.username.errors }}
+        <label class="label">{{ form.username.label_tag }}</label>
+        <div class="control">{{ form.username |addclass:'input' }}</div>
+      </div>
+
+      <!--Password -->
+      <div class="field">
+        {{ form.password.errors }}
+        <label class="label">{{ form.password.label_tag }}</label>
+        <div class="control">{{ form.password |addclass:'input' }}</div>
+      </div>
+
+      <!--Submit button-->
+      <div>
+        <input type="hidden" name="next" value="{{ next }}" />
+        <input class="button is-primary" type="submit" value="Login" />
+      </div>
+    </form>
+  </div>
+</section>
 {% endblock %}

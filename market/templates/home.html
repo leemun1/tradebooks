@@ -1,36 +1,65 @@
 {% extends "base.html" %}
 
-{% block header %}
-  <h1>New Books</h1>
-{% endblock header %}
-
 {% block content %}
 
-<table class="table">
-    <thead>
-      <tr>
-        <th>Course</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Decription</th>
-        <th>Price</th>
-        <th>Posted On</th>
-        
-      </tr>
-    </thead>
-    <tbody>
-    {% for book in books %}
-    <tr>
-        <th scope="row">{{ book.course_code }}</th>
-        <td>{{ book.title }}</td>
-        <td>{{ book.author }}</td>
-        <td>{{ book.description | truncatewords:20 }}</td>
-        <td>{{ book.price }}</td>
-        <td>{{ book.created_on |date:'M d, Y' }}</td>
-        
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<section class="hero is-medium is-light is-bold">
+    <div class="hero-body">
+      <div class="container is-centered">
+        <h1 class="title is-1">Welcome to Trudy!</h1>
+        <h2 class="subtitle primary-span">
+          Your favourite place for buying and selling used textbooks in Toronto.
+        </h2>
+      </div>
+    </div>
 
+</section>
+
+<section class="search">
+    <div class="columns is-centered">
+        <div class="column is-4">
+          <form role="form" method="GET" action="https://booknshelf.com/books/search">
+            <p class="control has-icon">
+              <input class="input is-medium" type="text" value="" name="q"
+                      placeholder="Search for a book">
+              <span class="icon"><i class="fa fa-search"></i></span>
+            </p>
+            <input type="submit" style="display: none;">
+          </form>
+        </div>
+      </div>
+</section>
+
+
+<section class="section columns is-mobile is-centered">
+  <div class="column is-10">
+    <h3 class="title is-3 section-heading">Latest Listings</h3>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Decription</th>
+            <th>Price</th>
+            <th>Date</th>
+            <th colspan="2">Actions</th>           
+          </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+        <tr>
+          <th scope="row">{{ book.course_code }}</th>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td width="40%">{{ book.description | truncatewords:15 }}</td>
+          <th scope="row">{{ book.price }}</th>
+          <td>{{ book.created_on |date:'M d, Y' }}</td>
+          <td><a href="{% url 'book_details' pk=book.pk %}" class="button is-light">View</a></td>
+          <td><a href="" class="button is-dark">Contact</a></td>        
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
 {% endblock %}

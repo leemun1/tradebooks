@@ -11,6 +11,9 @@ class Book(models.Model):
     price = models.FloatField()
     created_on = models.DateTimeField(auto_now_add=True, editable=False)
 
+    def __str__(self):
+        return self.title
+
 
 class Comment(models.Model):
     body = models.TextField()

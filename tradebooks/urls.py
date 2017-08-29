@@ -38,5 +38,5 @@ urlpatterns = [
     url(r'^books/new/$', NewBookView.as_view(), name='new_book'),
     url(r'^books/my/$', MyBooksListView.as_view(), name='my_books'),
     url(r'^books/(?P<pk>\d+)/edit/$', EditBookView.as_view(), name='edit_book'),
-    url(r'^books/(?P<pk>\d+)/$', BookDetailsView.as_view(), name='book_details'),
+    url(r'^books/(?P<pk>\d+)/$', BookDetailsView.as_view(), name='book_details'),    
 ]

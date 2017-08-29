@@ -1,13 +1,61 @@
 {% extends "base.html" %}
+{% load myfilters %}
 
 {% block content %}
-<h1>{% if object %}Edit My Ad{% else %}Create New Ad{% endif %}</h1>
+<section class="section columns is-mobile is-centered">
+  <div class="column is-half">
+    <h2 class="title is-2">
+      {% if object %}Edit My Listing{% else %}Create New Listing{% endif %}
+    </h2>
 
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
+    <form action="" method="post">{% csrf_token %}
 
-    <input type="hidden" name="next" value="{{ next }}" />
-    <input type="submit" value="Submit" />
-</form>
+      {{ form.non_field_errors }}
 
+      <!--Course Code -->
+      <div class="field">
+        {{ form.course_code.errors }}
+        <label class="label">{{ form.course_code.label_tag }}</label>
+        <div class="control">{{ form.course_code |addclass:'input' }}</div>
+        <p class="help">Enter the six-digits course code (e.g., ECO100).</p>
+      </div>
+
+      <!--Title -->
+      <div class="field">
+        {{ form.title.errors }}
+        <label class="label">{{ form.title.label_tag }}</label>
+        <div class="control">{{ form.title |addclass:'input' }}</div>
+        <p class="help">Enter the title of the book, along with its edition (e.g., Macroeconomics 3rd Canadian Edition).</p>
+      </div>
+
+      <!--Author -->
+      <div class="field">
+        {{ form.author.errors }}
+        <label class="label">{{ form.author.label_tag }}</label>
+        <div class="control">{{ form.author |addclass:'input' }}</div>
+      </div>
+
+      <!--Description -->
+      <div class="field">
+        {{ form.description.errors }}
+        <label class="label">{{ form.description.label_tag }}</label>
+        <div class="control">{{ form.description |addclass:'textarea' }}</div>
+      </div>
+
+      <!--Price -->
+      <div class="field">
+        {{ form.price.errors }}
+        <label class="label">{{ form.price.label_tag }}</label>
+        <div class="control">{{ form.price |addclass:'input'}}</div>
+      </div>
+
+      <!--Submit button-->
+      <div>
+        <input type="hidden" name="next" value="{{ next }}" />
+        <input class="button is-primary" type="submit" value="
+        {% if object %}Save changes{% else %}Create{% endif %}" />
+      </div>
+    </form>
+  </div>
+</section>
 {% endblock %}

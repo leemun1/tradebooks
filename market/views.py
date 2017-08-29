@@ -16,14 +16,14 @@ class HomeView(TemplateView):
         ctx = super(HomeView, self).get_context_data(**kwargs)
         
         #if self.request.user.is_authenticated():
-        books = Book.objects.all()
+        books = Book.objects.order_by('-created_on')[:15]
         ctx['books'] = books
         return ctx
 
 
 class NewBookView(CreateView):
     form_class = BookForm
-    template_name = 'create_or_edit_post.html'
+    template_name = 'create_or_edit_book.html'
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -67,5 +67,6 @@ class MyBooksListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(MyBooksListView, self).get_context_data(**kwargs)
+        context['has_books'] = Book.objects.filter(user=self.request.user).exists()
         context['books'] = Book.objects.filter(user=self.request.user)
         return context

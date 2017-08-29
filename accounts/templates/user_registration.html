@@ -1,9 +1,45 @@
 {% extends "base.html" %}
+{% load myfilters %}
 
 {% block content %}
-<h1>Create New User</h1>
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Create Account" />
-</form>
+<section class="section columns is-mobile is-centered">
+  <div class="column is-4">
+    <h2 class="title is-2">Create New User</h2>
+
+    <form action="" method="post">{% csrf_token %}
+
+      {{ form.non_field_errors }}
+
+      <!--Username -->
+      <div class="field">
+        {{ form.username.errors }}
+        <label class="label">{{ form.username.label_tag }}</label>
+        <div class="control">{{ form.username |addclass:'input' }}</div>
+        <span class="help">{{ form.username.help_text | safe }}</span>
+      </div>
+
+      <!--Password -->
+      <div class="field">
+        {{ form.password1.errors }}
+        <label class="label">{{ form.password1.label_tag }}</label>
+        <div class="control">{{ form.password1 |addclass:'input'}}</div>
+        <span class="help">{{ form.password1.help_text | safe }}</span>
+      </div>
+
+      <!--Password Verification-->
+      <div class="field">
+        {{ form.password2.errors }}
+        <label class="label">{{ form.password2.label_tag }}</label>
+        <div class="control">{{ form.password2 |addclass:'input'}}</div>
+        <span class="help">{{ form.password2.help_text | safe }}</span>
+      </div>
+
+      <!--Submit button-->
+      <div>
+        <input type="hidden" name="next" value="{{ next }}" />
+        <input class="button is-primary" type="submit" value="Create Account" />
+      </div>
+    </form>
+  </div>
+</section>
 {% endblock %}
