@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block header %}
+  <h1>New Books</h1>
+{% endblock header %}
+
+{% block content %}
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Decription</th>
+        <th>Price</th>
+        <th>Posted On</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+    {% for book in books %}
+    <tr>
+        <th scope="row">{{ book.course_code }}</th>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.description | truncatewords:20 }}</td>
+        <td>{{ book.price }}</td>
+        <td>{{ book.created_on |date:'M d, Y' }}</td>
+        
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

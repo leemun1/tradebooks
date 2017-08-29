@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block header %}
+  <h1>My Books</h1>
+{% endblock header %}
+
+{% block content %}
+<ul>
+  {% for book in books %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>
+          <a href="{% url 'book_details' pk=book.pk %}">{{ book.title }}</a>
+        <small>
+          {{ book.created_on |date:'M d, Y H:i' }} | 
+          <a href="{% url 'edit_book' pk=book.pk %}">Edit</a>
+        </small>
+        </h3>
+      </div>
+      <div class="panel-body">
+        {{ book.description | linebreaks }}
+      </div>
+    </div> <!-- panel -->
+  {% empty %}
+    <h3>You don't have any books yet.</h3>
+  {% endfor %}
+</ul>
+{% endblock %}

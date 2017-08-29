@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{% if object %}Edit My Ad{% else %}Create New Ad{% endif %}</h1>
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="hidden" name="next" value="{{ next }}" />
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
