@@ -75,16 +75,19 @@ class BookDetailsView(DetailView):
 
 
 class MyBooksListView(ListView):
-    model = Book
+    context_object_name = 'books'
+    paginate_by = 1
     template_name = 'book_list.html'
-    
+
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(MyBooksListView, self).dispatch(request, *args, **kwargs)
 
+    def get_queryset(self):
+        return Book.objects.filter(user=self.request.user)
+
     def get_context_data(self, **kwargs):
         context = super(MyBooksListView, self).get_context_data(**kwargs)
         context['has_books'] = Book.objects.filter(user=self.request.user).exists()
-        context['books'] = Book.objects.filter(user=self.request.user)
         return context
-
+    

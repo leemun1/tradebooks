@@ -2,7 +2,7 @@
 
 {% block content %}
 <section class="section page-main columns is-mobile is-centered">
-  <div class="column is-two-thirds">
+  <div class="column is-10">
     <div class="tile is-ancestor">
       <div class="tile is-vertical">
         <div class="tile">
@@ -15,8 +15,8 @@
                 <h3>$ {{ object.price }}</h3>              
               </div>
               <div class="content">{{ object.description }}</div>
-              <div class="content columns is-centered">
-                <div class="column field is-grouped">
+              <div class="content columns is-mobile is-centered">
+                <div class="column is-narrow field is-grouped">
                   <p class="control">
                     <a class="button is-info" href="{% url 'new_book' %}">
                       <span class="icon"><i class="fa fa-paper-plane-o"></i></span>

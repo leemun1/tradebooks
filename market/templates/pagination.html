@@ -1,0 +1,19 @@
+<div class="field is-grouped">
+  <div class="control">
+    {% if page.has_previous %}
+      <a href="?page={{ page.previous_page_number }}" class="button is-light">Previous</a>
+    {% else %}
+      <a class="button is-light" disabled>Previous</a>
+    {% endif %}
+  </div>
+  <div class="current title is-6 control pagination">
+    Page {{ page.number }} of {{ page.paginator.num_pages }}.
+  </div>
+  <div class="control">
+    {% if page.has_next %}
+      <a href="?page={{ page.next_page_number }}" class="button is-light">Next</a>
+    {% else %}
+      <a class="button is-light" disabled>Next</a>
+    {% endif %}
+  </div>
+</div>

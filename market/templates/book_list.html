@@ -3,7 +3,7 @@
 {% block content %}
   <section class="section page-main columns is-mobile is-centered">
     <div class="column"></div>
-    <div class="column is-two-thirds">
+    <div class="column is-10">
       <h2 class="title is-2">My Listings</h2>
       {% if has_books %}
       <table class="table">
@@ -36,7 +36,13 @@
       {% else %}
       <h3>You haven't listed any books yet. Click <a href="{% url 'new_book' %}">Here</a> to list a new book.</h3>
       {% endif %}
+
     </div>
     <div class="column"></div>
   </section>
+  <div class="columns is-mobile is-centered">
+    <div class="column is-narrow">
+      {% include "pagination.html" with page=page_obj %}
+    </div>
+  </div>
 {% endblock %}
