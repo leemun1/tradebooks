@@ -21,12 +21,12 @@
         <tbody>
           {% for book in books %}
           <tr>
-            <th scope="row">{{ book.course_code }}</th>
-            <td>{{ book.title }}</td>
-            <td>{{ book.author }}</td>
-            <td width="30%">{{ book.description | truncatewords:15 }}</td>
-            <th scope="row">{{ book.price }}</th>
-            <td>{{ book.created_on |date:'M d, Y' }}</td> 
+            <th width="10%"scope="row">{{ book.course_code }}</th>
+            <td width="10%">{{ book.title }}</td>
+            <td width="10%">{{ book.author }}</td>
+            <td>{{ book.description | truncatewords:10 }}</td>
+            <th width="10%" scope="row">{{ book.price }}</th>
+            <td width="10%">{{ book.created_on |date:'M d, Y' }}</td> 
             <td><a href="{% url 'edit_book' pk=book.pk %}" class="button is-light">Edit</a></td>
             <td><a href="{% url 'delete_book' pk=book.pk %}" class="button is-danger">Delete</a></td>
           </tr>
@@ -34,9 +34,8 @@
         </tbody>
       </table>
       {% else %}
-      <h3>You haven't listed any books yet. Click <a href="{% url 'new_book' %}">Here</a> to list a new book.</h3>
+        <h3>You haven't listed any books yet. Click <a href="{% url 'new_book' %}">Here</a> to list a new book.</h3>
       {% endif %}
-
     </div>
     <div class="column"></div>
   </section>
