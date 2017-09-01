@@ -1,9 +1,16 @@
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.urls import reverse_lazy
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, TemplateView, UpdateView, DetailView, ListView
+from django.views.generic import (
+    CreateView,
+    TemplateView,
+    UpdateView,
+    DetailView,
+    ListView,
+    DeleteView)
 
 from market.models import Book
 from market.forms import BookForm
@@ -52,6 +59,16 @@ class EditBookView(UpdateView):
         return queryset.filter(user=self.request.user)
 
 
+class DeleteBookView(DeleteView):
+    model = Book
+    template_name = 'book_confirm_delete.html'
+    success_url = reverse_lazy('my_books')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(DeleteBookView, self).dispatch(request, *args, **kwargs)
+
+
 class BookDetailsView(DetailView):
     model = Book
     template_name = 'book_details.html'
@@ -70,3 +87,4 @@ class MyBooksListView(ListView):
         context['has_books'] = Book.objects.filter(user=self.request.user).exists()
         context['books'] = Book.objects.filter(user=self.request.user)
         return context
+
