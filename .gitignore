@@ -5,8 +5,6 @@ staticfiles
 *.zip
 *.csv
 *.png
-*.jpeg
-*.jpg
 .env*
 settings_local.py
 post-double.py
