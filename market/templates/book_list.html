@@ -28,7 +28,7 @@
             <th scope="row">{{ book.price }}</th>
             <td>{{ book.created_on |date:'M d, Y' }}</td> 
             <td><a href="{% url 'edit_book' pk=book.pk %}" class="button is-light">Edit</a></td>
-            <td><a class="button is-danger">Delete</a></td>
+            <td><a href="{% url 'delete_book' pk=book.pk %}" class="button is-danger">Delete</a></td>
           </tr>
           {% endfor %}
         </tbody>
