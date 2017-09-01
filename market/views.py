@@ -76,7 +76,7 @@ class BookDetailsView(DetailView):
 
 class MyBooksListView(ListView):
     context_object_name = 'books'
-    paginate_by = 1
+    paginate_by = 5
     template_name = 'book_list.html'
 
     @method_decorator(login_required)
