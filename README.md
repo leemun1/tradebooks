@@ -25,3 +25,30 @@ This is a web application where students can post ads for used textbooks.
 ## What Next
 - Implement search feature
 - Implement browse page with that allows filtering of objects; similar to that of django's admin site
+
+
+## Preview
+#### User Login Page
+![main](market/static/images/trudy-2.JPG)
+
+#### User Registration Page
+![main](market/static/images/trudy-3.JPG)
+
+#### Main page
+![main](market/static/images/trudy-1.JPG)
+
+#### Listing Detail Page
+![main](market/static/images/trudy-8.JPG)
+
+#### Create Listing Page
+![main](market/static/images/trudy-4.JPG)
+
+#### My Listings Page
+![main](market/static/images/trudy-5.JPG)
+
+#### Edit Listing Page
+![main](market/static/images/trudy-6.JPG)
+
+#### Listing Delete Page (Modal)
+![main](market/static/images/trudy-7.JPG)
+
